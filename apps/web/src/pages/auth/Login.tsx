@@ -50,6 +50,76 @@ export const Login: React.FC = () => {
     }
   };
 
+  const handleDemoLogin = async () => {
+    setIsLoading(true);
+    setValidationError(null);
+
+    const demoEmail = 'demo@finsync.com';
+    const demoPassword = 'password123';
+
+    try {
+      // 1. Try to Login
+      const loginResponse = await apiClient.post('/auth/login', {
+        email: demoEmail,
+        password: demoPassword,
+        deviceId: 'web-browser-session',
+        deviceName: 'Chrome Browser',
+      });
+
+      const { token, user } = loginResponse.data.data;
+      setToken(token);
+      setUser(user);
+      addToast('success', 'Logged In as Demo User', 'Welcome to IDBI FinSync demo!');
+      setScreen('dashboard');
+    } catch {
+      // 2. If user doesn't exist, register them on the fly!
+      try {
+        // Register User
+        const registerResponse = await apiClient.post('/auth/register', {
+          fullName: 'Demo User',
+          email: demoEmail,
+          password: demoPassword,
+          mobileNumber: '9999999999',
+        });
+        const user = registerResponse.data.data.user;
+
+        // Request OTP
+        await apiClient.post('/auth/otp/request', {
+          userId: user.id,
+          purpose: 'SIGNUP',
+        });
+
+        // Verify OTP using the bypass code we created
+        await apiClient.post('/auth/otp/verify', {
+          userId: user.id,
+          code: '123456',
+          purpose: 'SIGNUP',
+        });
+
+        // Login again!
+        const loginResponse = await apiClient.post('/auth/login', {
+          email: demoEmail,
+          password: demoPassword,
+          deviceId: 'web-browser-session',
+          deviceName: 'Chrome Browser',
+        });
+
+        const { token, user: loggedUser } = loginResponse.data.data;
+        setToken(token);
+        setUser(loggedUser);
+        addToast('success', 'Demo User Created & Authenticated', 'Welcome to IDBI FinSync demo!');
+        setScreen('dashboard');
+      } catch (innerErr: any) {
+        const errorMsg =
+          innerErr.response?.data?.error?.message || 'Failed to initialize demo session.';
+        setValidationError(errorMsg);
+        addToast('error', 'Demo Sign In Failed', errorMsg);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-bg-base p-6 text-text-primary transition-colors duration-300">
       {/* Theme Toggle Top Right */}
@@ -98,6 +168,22 @@ export const Login: React.FC = () => {
 
           <Button type="submit" isLoading={isLoading} className="w-full mt-2">
             Sign In
+          </Button>
+
+          <div className="relative flex py-1 items-center">
+            <div className="flex-grow border-t border-border-light"></div>
+            <span className="flex-shrink mx-4 text-text-secondary text-xs font-semibold">Or</span>
+            <div className="flex-grow border-t border-border-light"></div>
+          </div>
+
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={handleDemoLogin}
+            isLoading={isLoading}
+            className="w-full border border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 hover:text-brand-primary-dark transition-all"
+          >
+            Sign In as Guest / Demo
           </Button>
         </form>
 
