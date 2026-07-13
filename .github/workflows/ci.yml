@@ -56,6 +56,9 @@ jobs:
       - name: Generate Prisma Client
         run: npm run db:generate
 
+      - name: Build Monorepo Workspaces
+        run: npm run build
+
       - name: Run Unit Tests
         run: npm run test
         env:
