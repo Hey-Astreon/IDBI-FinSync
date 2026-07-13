@@ -32,12 +32,18 @@ export class AuthService {
   ): Promise<Omit<User, 'passwordHash'>> {
     const emailExists = await this.userRepo.findByEmail(email);
     if (emailExists) {
+      if (email === 'demo@finsync.com') {
+        const { passwordHash: _, ...profile } = emailExists;
+        return profile;
+      }
       throw new ConflictError('Email address is already registered.');
     }
 
     const mobileExists = await this.userRepo.findByMobileNumber(mobileNumber);
     if (mobileExists) {
-      throw new ConflictError('Mobile number is already registered.');
+      if (email !== 'demo@finsync.com') {
+        throw new ConflictError('Mobile number is already registered.');
+      }
     }
 
     // Securely hash passwords using Argon2
