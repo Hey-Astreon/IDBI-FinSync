@@ -100,6 +100,10 @@ export const OtpVerification: React.FC = () => {
         <div className="text-center flex flex-col gap-1.5">
           <h1 className="text-3xl font-bold tracking-tight text-brand-primary">Verify OTP</h1>
           <p className="text-sm text-text-secondary">Enter the 6-digit confirmation code.</p>
+          <div className="mt-1 text-xs font-semibold px-2.5 py-1 rounded bg-brand-primary/5 text-brand-primary border border-brand-primary/10 self-center">
+            Demo Mode: Enter <span className="font-mono font-bold select-all">123456</span> to
+            verify
+          </div>
         </div>
 
         {validationError ? (
