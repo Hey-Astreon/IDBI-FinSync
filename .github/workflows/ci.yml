@@ -1,0 +1,66 @@
+name: CI Quality Gate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_DB: idbi_finsync
+          POSTGRES_USER: idbi_user
+          POSTGRES_PASSWORD: idbi_secure_password_2026
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Lint checks
+        run: npm run lint
+
+      - name: Run Format check
+        run: npx prettier --check "**/*.{ts,tsx,js,json,css,md}"
+
+      - name: Generate Prisma Client
+        run: npm run db:generate
+
+      - name: Run Unit Tests
+        run: npm run test
+        env:
+          DATABASE_URL: postgresql://idbi_user:idbi_secure_password_2026@localhost:5432/idbi_finsync?schema=public
+          REDIS_URL: redis://localhost:6379
+          JWT_SECRET: testing_secret_must_be_32_chars_long_and_secure
+          JWT_REFRESH_SECRET: testing_refresh_secret_must_be_64_chars_long_and_secure_to_pass_validation
+          GEMINI_API_KEY: fake_key

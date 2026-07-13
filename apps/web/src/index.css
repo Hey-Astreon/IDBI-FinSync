@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-brand-primary: hsl(170, 100%, 15%);
+    --color-brand-primary-light: hsl(155, 100%, 40%);
+    --color-brand-secondary: hsl(14, 100%, 70%);
+    --color-brand-accent: hsl(45, 98%, 52%);
+
+    --color-bg-base: hsl(40, 20%, 98%);
+    --color-bg-surface: hsl(40, 15%, 95%);
+    --color-bg-card-glass: hsla(0, 0%, 100%, 0.75);
+
+    --color-border-light: hsla(170, 100%, 15%, 0.08);
+    --color-border-focus: hsl(170, 100%, 15%);
+
+    --color-text-primary: hsl(170, 25%, 8%);
+    --color-text-secondary: hsl(170, 15%, 35%);
+    --color-text-muted: hsl(170, 10%, 55%);
+
+    --color-indicator-success: hsl(142, 70%, 28%);
+    --color-indicator-warning: hsl(38, 92%, 50%);
+    --color-indicator-error: hsl(354, 70%, 45%);
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+
+    --shadow-ambient: 0px 8px 32px rgba(0, 77, 64, 0.04), 0px 1px 2px rgba(0, 77, 64, 0.02);
+    --shadow-glow-accent: 0px 4px 20px hsla(14, 100%, 70%, 0.25);
+  }
+
+  [data-theme='dark'] {
+    --color-brand-primary: hsl(170, 100%, 75%);
+    --color-brand-primary-light: hsl(155, 100%, 55%);
+    --color-brand-secondary: hsl(14, 100%, 72%);
+    --color-brand-accent: hsl(45, 98%, 62%);
+
+    --color-bg-base: hsl(170, 15%, 8%);
+    --color-bg-surface: hsl(170, 12%, 11%);
+    --color-bg-card-glass: hsla(170, 12%, 11%, 0.85);
+
+    --color-border-light: hsla(170, 100%, 75%, 0.1);
+    --color-border-focus: hsl(170, 100%, 75%);
+
+    --color-text-primary: hsl(40, 20%, 96%);
+    --color-text-secondary: hsl(170, 8%, 75%);
+    --color-text-muted: hsl(170, 6%, 50%);
+
+    --shadow-ambient: 0px 8px 32px rgba(0, 0, 0, 0.4), 0px 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-glow-accent: 0px 4px 20px hsla(14, 100%, 72%, 0.15);
+  }
+
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-text-primary);
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      sans-serif;
+  }
+}
