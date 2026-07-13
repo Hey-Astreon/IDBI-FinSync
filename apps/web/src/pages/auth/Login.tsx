@@ -55,7 +55,7 @@ export const Login: React.FC = () => {
     setValidationError(null);
 
     const demoEmail = 'demo@finsync.com';
-    const demoPassword = 'password123';
+    const demoPassword = 'DemoPassword123!';
 
     try {
       // 1. Try to Login
@@ -79,7 +79,7 @@ export const Login: React.FC = () => {
           fullName: 'Demo User',
           email: demoEmail,
           password: demoPassword,
-          mobileNumber: '9999999999',
+          mobileNumber: '+919999999999',
         });
         const user = registerResponse.data.data.user;
 
