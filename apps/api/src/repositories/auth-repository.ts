@@ -94,8 +94,19 @@ export class AuthRepository implements IAuthRepository {
   async createDeviceSession(
     data: Prisma.DeviceSessionUncheckedCreateInput,
   ): Promise<DeviceSession> {
-    return prisma.deviceSession.create({
-      data,
+    return prisma.deviceSession.upsert({
+      where: {
+        userId_deviceId: {
+          userId: data.userId,
+          deviceId: data.deviceId,
+        },
+      },
+      update: {
+        deviceName: data.deviceName,
+        ipAddress: data.ipAddress,
+        isTrusted: data.isTrusted,
+      },
+      create: data,
     });
   }
 
