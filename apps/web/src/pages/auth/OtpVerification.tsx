@@ -97,7 +97,12 @@ export const OtpVerification: React.FC = () => {
           </button>
         </div>
 
-        <div className="text-center flex flex-col gap-1.5">
+        <div className="text-center flex flex-col items-center gap-1.5">
+          <img
+            src="/favicon.png"
+            alt="IDBI FinSync Logo"
+            className="h-16 w-16 object-contain mb-1 drop-shadow-sm"
+          />
           <h1 className="text-3xl font-bold tracking-tight text-brand-primary">Verify OTP</h1>
           <p className="text-sm text-text-secondary">Enter the 6-digit confirmation code.</p>
           <div className="mt-1 text-xs font-semibold px-2.5 py-1 rounded bg-brand-primary/5 text-brand-primary border border-brand-primary/10 self-center">

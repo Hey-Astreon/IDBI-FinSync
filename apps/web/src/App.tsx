@@ -74,7 +74,7 @@ function App() {
       initializeSession();
     }, 0);
     return () => clearTimeout(t);
-  }, [theme, setScreen, setToken, setUser]);
+  }, []);
 
   if (isInitializing) {
     return <FullAppSkeleton />;
@@ -102,7 +102,12 @@ function App() {
           </ScreenSuspense>
         );
       case 'dashboard':
-        if (!token) return <Login />;
+        if (!token)
+          return (
+            <ScreenSuspense>
+              <Login />
+            </ScreenSuspense>
+          );
         return (
           <DashboardLayout>
             <ScreenSuspense>
@@ -111,7 +116,12 @@ function App() {
           </DashboardLayout>
         );
       case 'accounts':
-        if (!token) return <Login />;
+        if (!token)
+          return (
+            <ScreenSuspense>
+              <Login />
+            </ScreenSuspense>
+          );
         return (
           <DashboardLayout>
             <ScreenSuspense>
@@ -120,7 +130,12 @@ function App() {
           </DashboardLayout>
         );
       case 'transactions':
-        if (!token) return <Login />;
+        if (!token)
+          return (
+            <ScreenSuspense>
+              <Login />
+            </ScreenSuspense>
+          );
         return (
           <DashboardLayout>
             <ScreenSuspense>
@@ -129,7 +144,12 @@ function App() {
           </DashboardLayout>
         );
       case 'goals':
-        if (!token) return <Login />;
+        if (!token)
+          return (
+            <ScreenSuspense>
+              <Login />
+            </ScreenSuspense>
+          );
         return (
           <DashboardLayout>
             <ScreenSuspense>
@@ -138,7 +158,12 @@ function App() {
           </DashboardLayout>
         );
       case 'investments':
-        if (!token) return <Login />;
+        if (!token)
+          return (
+            <ScreenSuspense>
+              <Login />
+            </ScreenSuspense>
+          );
         return (
           <DashboardLayout>
             <ScreenSuspense>
@@ -147,7 +172,12 @@ function App() {
           </DashboardLayout>
         );
       case 'ai':
-        if (!token) return <Login />;
+        if (!token)
+          return (
+            <ScreenSuspense>
+              <Login />
+            </ScreenSuspense>
+          );
         return (
           <DashboardLayout>
             <ScreenSuspense>
@@ -156,7 +186,12 @@ function App() {
           </DashboardLayout>
         );
       case 'notifications':
-        if (!token) return <Login />;
+        if (!token)
+          return (
+            <ScreenSuspense>
+              <Login />
+            </ScreenSuspense>
+          );
         return (
           <DashboardLayout>
             <ScreenSuspense>
@@ -165,7 +200,12 @@ function App() {
           </DashboardLayout>
         );
       case 'profile':
-        if (!token) return <Login />;
+        if (!token)
+          return (
+            <ScreenSuspense>
+              <Login />
+            </ScreenSuspense>
+          );
         return (
           <DashboardLayout>
             <ScreenSuspense>

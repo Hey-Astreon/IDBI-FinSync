@@ -4,11 +4,19 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="IDBI FinSync - One Financial Life. Intelligently Connected. Manage your accounts, transactions, investments and goals in one place." />
+    <meta name="theme-color" content="#0d6e6e" />
     <title>IDBI FinSync - One Financial Life. Intelligently Connected.</title>
-    <!-- Google Fonts: Inter and Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- DNS prefetch for API server to reduce latency on first request -->
+    <link rel="dns-prefetch" href="https://idbi-fin-sync-api.onrender.com" />
+    <link rel="preconnect" href="https://idbi-fin-sync-api.onrender.com" />
+    <!-- Google Fonts: preconnect first, then load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Only load weights actually used (400, 500, 600 for Inter; 500, 600, 700 for Outfit) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <!-- Preload favicon so it's ready before first paint -->
+    <link rel="preload" href="/favicon.png" as="image" type="image/png" />
   </head>
   <body>
     <div id="root"></div>

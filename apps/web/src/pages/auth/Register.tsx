@@ -73,9 +73,14 @@ export const Register: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-bg-base p-6 text-text-primary transition-colors duration-300">
       <div className="w-full max-w-md rounded-sq-lg border border-border-light bg-bg-surface p-8 shadow-ambient flex flex-col gap-6">
-        <div className="text-center flex flex-col gap-1.5">
-          <h1 className="text-3xl font-bold tracking-tight text-brand-primary">Register</h1>
-          <p className="text-sm text-text-secondary">Join IDBI FinSync financial ecosystem.</p>
+        <div className="text-center flex flex-col items-center gap-1.5">
+          <img
+            src="/favicon.png"
+            alt="IDBI FinSync Logo"
+            className="h-16 w-16 object-contain mb-1 drop-shadow-sm"
+          />
+          <h1 className="text-3xl font-bold tracking-tight text-brand-primary">IDBI FinSync</h1>
+          <p className="text-sm text-text-secondary">Join the IDBI FinSync financial ecosystem.</p>
         </div>
 
         {validationError ? (

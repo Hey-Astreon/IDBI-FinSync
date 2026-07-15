@@ -130,7 +130,12 @@ export const Login: React.FC = () => {
       </button>
 
       <div className="w-full max-w-md rounded-sq-lg border border-border-light bg-bg-surface p-8 shadow-ambient flex flex-col gap-6">
-        <div className="text-center flex flex-col gap-1.5">
+        <div className="text-center flex flex-col items-center gap-1.5">
+          <img
+            src="/favicon.png"
+            alt="IDBI FinSync Logo"
+            className="h-16 w-16 object-contain mb-1 drop-shadow-sm"
+          />
           <h1 className="text-3xl font-bold tracking-tight text-brand-primary">IDBI FinSync</h1>
           <p className="text-sm text-text-secondary">One Financial Life. Connected.</p>
         </div>
