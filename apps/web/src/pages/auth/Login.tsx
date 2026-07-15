@@ -76,12 +76,11 @@ export const Login: React.FC = () => {
       try {
         // Register User
         const registerResponse = await apiClient.post('/auth/register', {
-          fullName: 'Demo User',
           email: demoEmail,
           password: demoPassword,
           mobileNumber: '+919999999999',
         });
-        const user = registerResponse.data.data.user;
+        const user = registerResponse.data.data;
 
         // Request OTP
         await apiClient.post('/auth/otp/request', {
